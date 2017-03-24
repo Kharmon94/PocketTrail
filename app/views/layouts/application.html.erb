@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PocketTrail</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/amstock.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/dark.js"></script>
+  </head>
+
+  <body>
+  <div class="container-fluid"> 
+  <div class="row">
+     <div class="col-xs-12 banner">
+          <nav id="nav" class="navbar navbar-default">
+            <div class="container-fluid">
+              
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="#">
+                        
+                      </a>
+              </div>
+              
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                        <li><%=link_to 'Home', root_path%></li> 
+                        <%= content_tag :li do 
+                          link_to "Positions", user_path(current_user)
+                          end if current_user %>
+                        <%= content_tag :li do 
+                          link_to "Settings", edit_user_registration_path
+                          end if current_user %>
+                        <%= content_tag :li do 
+                          link_to "Logout", destroy_user_session_path, method: :delete
+                          end if current_user %>
+                        <%= content_tag :li do 
+                          link_to "Login", new_user_session_url
+                          end if !current_user %>
+                        <%= content_tag :li do 
+                        link_to "Register", new_user_registration_path 
+                        end if !current_user %>     
+                  </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+         </nav>
+    </div>
+  </div>
+</div>    
+    <%= yield %>
+  </body>
+
+</html>
