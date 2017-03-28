@@ -1,4 +1,23 @@
-#thegraph{
-  width: 65%;
+#chartdiv{
+  width: 700px;
   height: 500px;
+  margin: 10px;
+  float: right;
+}
+#symbolinfo{
+	margin-left: 15px;
+	#info_one{
+	float: left;
+	margin-right: 100px;
+	display: inline-block; 
+	}
+	#info_two{
+	float: left;
+	clear: left;
+	margin-top: 30px;
+	display: inline-block;
+	}
+}
+#calc{
+	margin: 10px;
 }
