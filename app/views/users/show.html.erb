@@ -1,24 +1,27 @@
 <h2>Hi &nbsp<%= @user.first_name %>!</h2>
+<hr>
+<div id="recent_search">
+  <h4>Recent Searches</h4>
+  <p>Select Details to view Symbol information.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<h4>Recent Searches</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Symbol</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @user.user_tickers.each do |ticker| %>
-      <tr>
-        <td><strong><%= ticker.ticker %></strong><br><button><%= link_to "details", tickets_details_path( ticker: ticker.ticker ) %></button>
-		<%= content_tag :button do 
-			link_to 'delete', "/tickets/#{ticker.ticker}", method: :delete
-		end
-		%>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @user.tickers.each do |ticker| %>
+          <tr>
+            <td><strong><%= ticker.ticker %></strong><br><button><%= link_to "details", tickets_details_path( ticker: ticker.ticker ) %></button>
+    		<%= content_tag :button do 
+    			link_to 'delete', "/tickets/#{ticker.ticker}", method: :delete
+    		end
+    		%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>

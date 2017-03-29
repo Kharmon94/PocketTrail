@@ -1,122 +1,132 @@
-<div id="chartdiv">
-	<% if @stock %>
-		<script src="//www.amcharts.com/lib/3/amcharts.js"></script>
-    	<script src="//www.amcharts.com/lib/3/serial.js"></script>
-    	<script src="//www.amcharts.com/lib/3/amstock.js"></script>
-    	<script src="//www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
-    	<script src="//www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-    	<script src="//www.amcharts.com/lib/3/themes/light.js"></script>
-    	<script>
-			var chart = AmCharts.makeChart( "chartdiv", {
-			  "type": "stock",
-			  "theme": "light",
-			  "dataSets": [ {
-			    "title": "<%= @stock %>",
-			    "fieldMappings": [ {
-			      "fromField": "Open",
-			      "toField": "open"
-			    }, {
-			      "fromField": "High",
-			      "toField": "high"
-			    }, {
-			      "fromField": "Low",
-			      "toField": "low"
-			    }, {
-			      "fromField": "Close",
-			      "toField": "close"
-			    }, {
-			      "fromField": "Volume",
-			      "toField": "volume"
-			    } ],
-			    "compared": false,
-			    "categoryField": "Date",
-			    /**
-			     * data loader for data set data
-			     */
-			    "dataLoader": {
-			      "url": "/tickets/<%= @stock %>",
-			      "format": "csv",
-			      "showCurtain": true,
-			      "showErrors": true,
-			      "async": true,
-			      "reverse": true,
-			      "delimiter": ",",
-			      "useColumnNames": true
-			    },
-			  } ],
-			  "dataDateFormat": "YYYY-MM-DD",
-			  "panels": [ {
-			      "title": "Value",
-			      "percentHeight": 70,
-			      "stockGraphs": [ {
-			        "type": "candlestick",
-			        "id": "g1",
-			        "openField": "open",
-			        "closeField": "close",
-			        "highField": "high",
-			        "lowField": "low",
-			        "valueField": "close",
-			        "lineColor": "green",
-			        "fillColors": "green",
-			        "negativeLineColor": "#db4c3c",
-			        "negativeFillColors": "#db4c3c",
-			        "fillAlphas": 1,
-			        "comparedGraphLineThickness": 4,
-			        "columnWidth": 0.7,
-			        "useDataSetColors": false,
-			        "comparable": true,
-			        "compareField": "close",
-			        "showBalloon": false,
-			        "proCandlesticks": true
-			      } ],
-			      "stockLegend": {
-			        "valueTextRegular": undefined,
-			        "periodValueTextComparing": "[[percents.value.close]]%"
-			      }
-			    },
-			  ],
-			} );
-		</script>
-	<% end %>
-</div>
-<div id="symbolinfo">
-	<h2><%= @data['symbol'] %></h2>
-	<div id="info_one">
-		<p><strong>ASK:</strong> <%= @data['ask'] %></p>
-		<p><strong>BID:</strong> <%= @data['bid'] %></p>
-		<p><strong>OPEN:</strong> <%= @data['open'] %></p>
-		<p><strong>PREV CLOSE:</strong> <%= @data['previous_close'] %></p>
-		<p>52wk RANGE: <%= @data['weeks_range_52'] %></p>
-		<p>DAY'S RANGE: <%= @data['days_range'] %></p>
-		<p>VOLUME: <%= @data['volume'] %></p>
-		<p>AVG VOL(3m): <%= @data['average_daily_volume'] %></p>
+<div class="container">
+<h2><%= @data['symbol'] %></h2>
+	<div class="row">
+			<div id="symbolinfo">
+					<div class="col-xs-4"  id="info_one">
+						<p><strong>ASK:</strong> <%= @data['ask'] %></p>
+						<p><strong>BID:</strong> <%= @data['bid'] %></p>
+						<p><strong>OPEN:</strong> <%= @data['open'] %></p>
+						<p><strong>PREV CLOSE:</strong> <%= @data['previous_close'] %></p>
+					</div>	
+					<div class="col-xs-4" id="info_three">
+						<p>52wk RANGE: <%= @data['weeks_range_52'] %></p>
+						<p>DAY'S RANGE: <%= @data['days_range'] %></p>
+						<p>VOLUME: <%= @data['volume'] %></p>
+						<p>AVG VOL(3m): <%= @data['average_daily_volume'] %></p>
+						<p>MARKET CAP: <%= @data['market_capitalization'] %></p>
+						<p>P/E RATIO: <%= @data['pe_ratio'] %></p>
+					</div>
+					<div class="col-xs-4" id="info_three">
+						<p>EARNINGS PER SHARE: <%= @data['earnings_per_share'] %></p>
+						<p>EBITDA: <%= @data['ebitda'] %></p>
+						<p>REVENUE: <%= @data['revenue'] %></p>
+						<p>DIVIDEND & YIELD: <%= @data['dividend_yield'] %></p>
+						<p>SHARES OUTSTANDING: <%= @data['shares_outstanding'] %></p>
+						<p>FLOAT: <%= @data['float_shares'] %></p>
+					</div>
+			</div>
 	</div>
-	<div id="info_too">
-		<p>MARKET CAP: <%= @data['market_capitalization'] %></p>
-		<p>P/E RATIO: <%= @data['pe_ratio'] %></p>
-		<p>EARNINGS PER SHARE: <%= @data['earnings_per_share'] %></p>
-		<p>EBITDA: <%= @data['ebitda'] %></p>
-		<p>REVENUE: <%= @data['revenue'] %></p>
-		<p>DIVIDEND & YIELD: <%= @data['dividend_yield'] %></p>
-		<p>SHARES OUTSTANDING: <%= @data['shares_outstanding'] %></p>
-		<p>FLOAT: <%= @data['float_shares'] %></p>
+	<div class="row">
+		<div class="col-xs-12" id="chartdiv">
+				<% if @stock %>
+					<script src="//www.amcharts.com/lib/3/amcharts.js"></script>
+			    	<script src="//www.amcharts.com/lib/3/serial.js"></script>
+			    	<script src="//www.amcharts.com/lib/3/amstock.js"></script>
+			    	<script src="//www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
+			    	<script src="//www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+			    	<script src="//www.amcharts.com/lib/3/themes/light.js"></script>
+			    	<script>
+						var chart = AmCharts.makeChart( "chartdiv", {
+						  "type": "stock",
+						  "theme": "light",
+						  "dataSets": [ {
+						    "title": "<%= @stock %>",
+						    "fieldMappings": [ {
+						      "fromField": "Open",
+						      "toField": "open"
+						    }, {
+						      "fromField": "High",
+						      "toField": "high"
+						    }, {
+						      "fromField": "Low",
+						      "toField": "low"
+						    }, {
+						      "fromField": "Close",
+						      "toField": "close"
+						    }, {
+						      "fromField": "Volume",
+						      "toField": "volume"
+						    } ],
+						    "compared": false,
+						    "categoryField": "Date",
+						    /**
+						     * data loader for data set data
+						     */
+						    "dataLoader": {
+						      "url": "/tickets/<%= @stock %>",
+						      "format": "csv",
+						      "showCurtain": true,
+						      "showErrors": true,
+						      "async": true,
+						      "reverse": true,
+						      "delimiter": ",",
+						      "useColumnNames": true
+						    },
+						  } ],
+						  "dataDateFormat": "YYYY-MM-DD",
+						  "panels": [ {
+						      "title": "Value",
+						      "percentHeight": 70,
+						      "stockGraphs": [ {
+						        "type": "candlestick",
+						        "id": "g1",
+						        "openField": "open",
+						        "closeField": "close",
+						        "highField": "high",
+						        "lowField": "low",
+						        "valueField": "close",
+						        "lineColor": "green",
+						        "fillColors": "green",
+						        "negativeLineColor": "#db4c3c",
+						        "negativeFillColors": "#db4c3c",
+						        "fillAlphas": 1,
+						        "comparedGraphLineThickness": 4,
+						        "columnWidth": 0.7,
+						        "useDataSetColors": false,
+						        "comparable": true,
+						        "compareField": "close",
+						        "showBalloon": false,
+						        "proCandlesticks": true
+						      } ],
+						      "stockLegend": {
+						        "valueTextRegular": undefined,
+						        "periodValueTextComparing": "[[percents.value.close]]%"
+						      }
+						    },
+						  ],
+						} );
+					</script>
+				<% end %>
+			</div>
 	</div>
+	<div class="row">		
+			<div id="calc">
+				<h4>Profit/Loss Calculator</h4>
+						<div class="col-xs-8" id="calc1">
+							Initial Price:   $<input type="number" id="initial_price"><br>
+							Final Price:     $<input type="number" id="final_price"><br>
+							Shares:   &nbsp&nbsp&nbsp&nbsp #<input type="number" id="shares"><br>
+							Buy Commission:  $<input type="number" id="buy_commission"><br>
+							Sell Commission: $<input type="number" id="sell_commission"><br>
+						</div>
+						<div class="col-xs-4" id="calc2">
+								<input type="submit" id="submit">		
+								<p>Net Profit: $<span id="net_profit"></span></p>
+								<p>Return On Investment: <span id="return_percent"></span>%</p>
+						</div>
+			</div>	
+	</div>	
 </div>
-<div id="calc">
-	<h4>Profit/Loss Calculator</h4>
-	Initial Price:   $<input type="number" id="initial_price">
-	Final Price:     $<input type="number" id="final_price">
-	Shares:          <input type="number" id="shares"><br>
-	Buy Commission:  $<input type="number" id="buy_commission">
-	Sell Commission: $<input type="number" id="sell_commission">
-	<input type="submit" id="submit">
-	<div>
-		<p>Net Profit: $<span id="net_profit"></span></p>
-		<p>Return On Investment: <span id="return_percent"></span>%</p>
-	</div>
-</div>
-
-
 
 
 
