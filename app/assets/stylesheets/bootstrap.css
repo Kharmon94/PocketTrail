@@ -5325,7 +5325,7 @@ button.list-group-item {
 }
 .list-group-item-success {
   color: #3c763d;
-  background-color: #dff0d8;
+  background-color: lightblue;
 }
 a.list-group-item-success,
 button.list-group-item-success {

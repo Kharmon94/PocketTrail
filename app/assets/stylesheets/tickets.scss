@@ -4,19 +4,24 @@
   margin: 10px;
   // float: right;
  }
-// #symbolinfo{
-// 	#info_one{
-// 	float: left;
-// 	margin-right: 60px;
-// 	display: inline-block; 
-// 	}
-// 	#info_two{
-// 	float: left;
-// 	// clear: left;
-// 	// margin-top: 30px;
-// 	display: inline-block;
-// 	}
-// }
-#calc{
-	
+#symbolinfo{
+	font-size: 18px;
+}
+#inforow{
+	background-color: lightblue;
+	border-radius: 25px;
+	padding: 30px;
+	background-opacity: 0.35;
+	z-index: -100;
+}
+#calcrow{
+	background-color: lightblue;
+	border-radius: 25px;
+	padding: 30px;
+	background-opacity: 0.35;
+	z-index: -100;
+	margin-bottom: 20px;
+}
+#profit{
+	font-size: 30px;
 }

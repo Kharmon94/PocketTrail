@@ -1,6 +1,6 @@
 <div class="container">
-<h2><%= @data['symbol'] %></h2>
-	<div class="row">
+<h1><%= @data['symbol'] %></h1>
+	<div id="inforow" class="row">
 			<div id="symbolinfo">
 					<div class="col-xs-4"  id="info_one">
 						<p><strong>ASK:</strong> <%= @data['ask'] %></p>
@@ -26,7 +26,7 @@
 					</div>
 			</div>
 	</div>
-	<div class="row">
+	<div id="chartrow" class="row">
 		<div class="col-xs-12" id="chartdiv">
 				<% if @stock %>
 					<script src="//www.amcharts.com/lib/3/amcharts.js"></script>
@@ -109,8 +109,24 @@
 				<% end %>
 			</div>
 	</div>
-	<div class="row">		
+	<div id="calcrow" class="row">		
 			<div id="calc">
+				<script type="text/javascript">
+					$(document).ready(function(){
+						document.getElementById('submit').onclick=function(){
+							 initial = parseInt(document.getElementById('initial_price').value)
+							 final = parseInt(document.getElementById('final_price').value)
+							 shares = parseInt(document.getElementById('shares').value)
+							 buy = parseInt(document.getElementById('buy_commission').value)
+							 sell = parseInt(document.getElementById('sell_commission').value)
+							 roi = final / initial * 100 - 100
+							 gross = (final - initial) * shares
+							 net_p = gross - (buy + sell)
+							 document.getElementById("net_profit").innerText = net_p;
+							 document.getElementById("return_percent").innerText = roi.toFixed(2);
+							};
+						})
+				</script>
 				<h4>Profit/Loss Calculator</h4>
 						<div class="col-xs-8" id="calc1">
 							Initial Price:   $<input type="number" id="initial_price"><br>
@@ -121,8 +137,8 @@
 						</div>
 						<div class="col-xs-4" id="calc2">
 								<input type="submit" id="submit">		
-								<p>Net Profit: $<span id="net_profit"></span></p>
-								<p>Return On Investment: <span id="return_percent"></span>%</p>
+								<p id="profit">Net Profit:<br> $<span id="net_profit"></span></p>
+								<p id="profit">Return On Investment:<br> <span id="return_percent"></span>%</p>
 						</div>
 			</div>	
 	</div>	

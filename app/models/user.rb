@@ -6,6 +6,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   def tickers
-  	self.user_tickers.order('created_at DESC')
+  	self.user_tickers.order('updated_at DESC')
   end
 end

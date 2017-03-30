@@ -1,12 +1,28 @@
-<script src="http://widgets.macroaxis.com/widgets/url.jsp?t=42"></script>
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function(){
+      Typed.new('#search_head', {
+        strings: ["WELCOME TO POCKET TRAIL", "RESEARCH YOUR STOCK", "SEARCH THE SYMBOL"],
+        typeSpeed: 0
+      });
+  });
+</script>
 <div class="container">
-	<div class="sixteen columns">
-		<div id="search_box" align="center" class="four columns offset-by-four">
-			<h1 id="search_head">Search A Symbol</h1>
+	<div class="row">
+			<h1>
+				<div class="col-xs-11 center" id="search_head" align="center"><span class="typed-cursor"></span></div>
+			</h1>
+	</div>
+	<div class="row">	
+		<div class="col-xs-12 center" align="center">
 			<form action="/tickets/details" method="get">
-			<input id="ticker" name="ticker" type="Search">
-			<input id="submitbutton" type="submit" value="Search" />
+				<input id="ticker" name="ticker" type="Search">
+				<input id="submitbutton" type="submit" value="Search" />
 			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div id="logo" class="col-xs-12 center" align="center">
+			<%= image_tag("logo.png") %>
 		</div>
 	</div>
 </div>

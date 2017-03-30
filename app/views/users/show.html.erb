@@ -14,9 +14,11 @@
       <tbody>
         <% @user.tickers.each do |ticker| %>
           <tr>
-            <td><strong><%= ticker.ticker %></strong><br><button><%= link_to "details", tickets_details_path( ticker: ticker.ticker ) %></button>
-    		<%= content_tag :button do 
-    			link_to 'delete', "/tickets/#{ticker.ticker}", method: :delete
+            <td><strong><%= ticker.ticker %></strong><br><%= link_to tickets_details_path( ticker: ticker.ticker ) do 
+                content_tag :button, 'Details'
+              end %>
+    		<%= link_to "/tickets/#{ticker.ticker}", method: :delete do
+          content_tag :button, "Delete" 
     		end
     		%>
             </td>

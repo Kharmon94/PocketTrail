@@ -1,11 +1,33 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#search_box{
-	margin-top: 10%;
-	h1{
-	width: 150%;
-	position: relative;
-	right: 28%;
+#search_head{
+	margin:10px;
+	text-align: center;
+
+}
+.typed-cursor{
+	    opacity: 1;
+	    -webkit-animation: blink 0.7s infinite;
+	    -moz-animation: blink 0.7s infinite;
+	    animation: blink 0.7s infinite;
 	}
+	@keyframes blink{
+	    0% { opacity:1; }
+	    50% { opacity:0; }
+	    100% { opacity:1; }
+	}
+	@-webkit-keyframes blink{
+	    0% { opacity:1; }
+	    50% { opacity:0; }
+	    100% { opacity:1; }
+	}
+	@-moz-keyframes blink{
+	    0% { opacity:1; }
+	    50% { opacity:0; }
+	    100% { opacity:1; }
+	}
+#logo{
+	margin-top: 20px;
+	opacity: 0.55;
 }
