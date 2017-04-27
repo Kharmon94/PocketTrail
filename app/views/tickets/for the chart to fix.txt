@@ -1,0 +1,79 @@
+<% if @stock %>
+					<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+			    	<script src="//www.amcharts.com/lib/3/serial.js"></script>
+			    	<script src="amcharts/plugins/dataloader/dataloader.min.js" type="text/javascript"></script>
+			    	<script src="//www.amcharts.com/lib/3/amstock.js"></script>
+			    	<script src="//www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+			    	<script src="https://www.amcharts.com/lib/3/themes/dark.js"></script>
+			    	<script>
+						var chart = AmCharts.makeChart( "chartdiv", {
+						  "type": "stock",
+						  "theme": "light",
+						  "dataSets": [ {
+						    "title": "<%= @stock %>",
+						    "fieldMappings": [ {
+						      "fromField": "Open",
+						      "toField": "open"
+						    }, {
+						      "fromField": "High",
+						      "toField": "high"
+						    }, {
+						      "fromField": "Low",
+						      "toField": "low"
+						    }, {
+						      "fromField": "Close",
+						      "toField": "close"
+						    }, {
+						      "fromField": "Volume",
+						      "toField": "volume"
+						    } ],
+						    "compared": false,
+						    "categoryField": "Date",
+						    /**
+						     * data loader for data set data
+						     */
+						    "dataLoader": {
+						      "url": "/tickets/<%= @stock %>",
+						      "format": "csv",
+						      "showCurtain": true,
+						      "showErrors": true,
+						      "async": true,
+						      "reverse": true,
+						      "delimiter": ",",
+						      "useColumnNames": true
+						    },
+						  } ],
+						  "dataDateFormat": "YYYY-MM-DD",
+						  "panels": [ {
+						      "title": "Value",
+						      "percentHeight": 70,
+						      "stockGraphs": [ {
+						        "type": "candlestick",
+						        "id": "g1",
+						        "openField": "open",
+						        "closeField": "close",
+						        "highField": "high",
+						        "lowField": "low",
+						        "valueField": "close",
+						        "lineColor": "green",
+						        "fillColors": "green",
+						        "negativeLineColor": "#db4c3c",
+						        "negativeFillColors": "#db4c3c",
+						        "fillAlphas": 1,
+						        "comparedGraphLineThickness": 4,
+						        "columnWidth": 0.7,
+						        "useDataSetColors": false,
+						        "comparable": true,
+						        "compareField": "close",
+						        "showBalloon": false,
+						        "proCandlesticks": true
+						      } ],
+						      "stockLegend": {
+						        "valueTextRegular": undefined,
+						        "periodValueTextComparing": "[[percents.value.close]]%"
+						      }
+						    },
+						  ],
+						} );
+					</script>
+				<% end %>

@@ -39,6 +39,8 @@
                         <%= content_tag :li do 
                           link_to "Settings", edit_user_registration_path
                           end if current_user %>
+                  </ul>        
+                  <ul class="nav navbar-nav pull-right">
                         <%= content_tag :li do 
                           link_to "Logout", destroy_user_session_path, method: :delete
                           end if current_user %>
