@@ -16,24 +16,24 @@ before_action :authenticate_user!
 	end
 
 	# chart info
-	def chart
-	  @stock = params[:ticker].upcase
-	   raise "error" unless @stock && @stock.length > 0
-	   uri = URI( 'http://chart.finance.yahoo.com/table.csv' )
-	  uri.query = URI.encode_www_form(
-	    s: @stock,        # s - stock symbol to look up
-	    a: 6,             # a - start month
-	    b: 1,             # b - start day
-	    c: 2016,          # c - start year
-	    d: Date.today.month,             # d - end month
-	    e: Date.today.day,            # e - end day
-	    f: Date.today.year,          # f - end year
-	    g: 'd',           # g - d (daily), m (monthly), y (yearly)
-	    ignore: '.csv'
-	  )
-	  p uri
-	  @output = Net::HTTP.get_response( uri ).body 
- 	end 
+	# def chart
+	#   @stock = params[:ticker].upcase
+	#    raise "error" unless @stock && @stock.length > 0
+	#    uri = URI( 'http://chart.finance.yahoo.com/table.csv' )
+	#   uri.query = URI.encode_www_form(
+	#     s: @stock,        # s - stock symbol to look up
+	#     a: 6,             # a - start month
+	#     b: 1,             # b - start day
+	#     c: 2016,          # c - start year
+	#     d: Date.today.month,             # d - end month
+	#     e: Date.today.day,            # e - end day
+	#     f: Date.today.year,          # f - end year
+	#     g: 'd',           # g - d (daily), m (monthly), y (yearly)
+	#     ignore: '.csv'
+	#   )
+	#   p uri
+	#   @output = Net::HTTP.get_response( uri ).body 
+ # 	end 
 
 
 
